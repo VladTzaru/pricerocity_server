@@ -1,16 +1,8 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, Property } from "@mikro-orm/core";
+import { BaseEntity } from "./BaseEntity";
 
 @Entity()
-export class Item {
-  @PrimaryKey()
-  id!: number;
-
-  @Property()
-  createdAt = new Date();
-
-  @Property({ onUpdate: () => new Date() })
-  updatedAt = new Date();
-
+export class Item extends BaseEntity {
   @Property()
   itemNameCro: string;
 
@@ -22,4 +14,17 @@ export class Item {
 
   @Property()
   vat: number;
+
+  constructor(
+    itemNameCro: string,
+    itemNameEng: string,
+    retailPrice: number,
+    vat: number
+  ) {
+    super();
+    this.itemNameEng = itemNameCro;
+    this.itemNameEng = itemNameEng;
+    this.retailPrice = retailPrice;
+    this.vat = vat;
+  }
 }
