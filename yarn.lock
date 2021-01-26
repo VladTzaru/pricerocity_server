@@ -15,6 +15,13 @@
     reflect-metadata "0.1.13"
     strip-json-comments "3.1.1"
 
+"@mikro-orm/mongo-highlighter@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/mongo-highlighter/-/mongo-highlighter-1.0.0.tgz#904e086083ed0da10b58007f1e010d745de4dada"
+  integrity sha512-pPb/f1TKDBbJ8fH6Bbc5qMr/52edtA+vQrEKmuF3T7z9/feMrS6laW6FIpJXJJeP5sn0w4udjc/BIc4ntm4QHg==
+  dependencies:
+    ansi-colors "^4.1.1"
+
 "@mikro-orm/mongodb@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@mikro-orm/mongodb/-/mongodb-4.4.0.tgz#a3dc865a99370c6c067ce893b9b617cc56080744"
@@ -153,7 +160,7 @@ ansi-align@^3.0.0:
   dependencies:
     string-width "^3.0.0"
 
-ansi-colors@4.1.1:
+ansi-colors@4.1.1, ansi-colors@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
   integrity sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==
@@ -1162,7 +1169,7 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-reflect-metadata@0.1.13:
+reflect-metadata@0.1.13, reflect-metadata@^0.1.13:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
   integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
