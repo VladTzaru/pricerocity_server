@@ -24,7 +24,7 @@ router.post("/new", async (req: MyRequest<Item>, res: Response) => {
     !req.body.vat
   ) {
     res.status(400);
-    return res.json({ message: "Item name is missing" });
+    return res.json({ message: "Sva polja su obavezna." });
   }
 
   try {
