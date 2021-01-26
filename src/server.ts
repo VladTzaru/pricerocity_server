@@ -10,7 +10,9 @@ import {
   RequestContext,
 } from "@mikro-orm/core";
 
+// My Imports
 import { Item } from "./entities/Item";
+import { ItemController } from "./controllers";
 
 dotenv.config();
 
@@ -23,7 +25,7 @@ export const DI = {} as {
 const app = express();
 const port = 5000;
 
-const main = async () => {
+(async () => {
   DI.orm = await MikroORM.init();
   DI.em = DI.orm.em;
   DI.itemRepository = DI.orm.em.getRepository(Item);
@@ -33,9 +35,8 @@ const main = async () => {
 
   app.use((_req, _res, next) => RequestContext.create(DI.orm.em, next));
 
-  app.get("/", (_, res) => {
-    res.send("Hello there");
-  });
+  // Routes
+  app.use("/item", ItemController);
 
   // Catch all route
   app.use((_req, res) => res.status(404).json({ message: "No route found" }));
@@ -43,6 +44,4 @@ const main = async () => {
   app.listen(port, () => {
     console.log(`Listenin at port ${port}`);
   });
-};
-
-main().catch(console.error);
+})();
