@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import {
   EntityManager,
@@ -30,6 +31,7 @@ const port = 5000;
   DI.em = DI.orm.em;
   DI.itemRepository = DI.orm.em.getRepository(Item);
 
+  app.use(cors());
   app.use(express.json());
   app.use(bodyParser.urlencoded({ extended: false }));
 
