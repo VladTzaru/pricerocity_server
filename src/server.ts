@@ -37,6 +37,9 @@ const main = async () => {
     res.send("Hello there");
   });
 
+  // Catch all route
+  app.use((_req, res) => res.status(404).json({ message: "No route found" }));
+
   app.listen(port, () => {
     console.log(`Listenin at port ${port}`);
   });
