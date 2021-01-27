@@ -28,6 +28,32 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
+// Update item
+router.put("/:id", async (req: MyRequest<Item>, res: Response) => {
+  if (
+    !req.body.itemNameCro ||
+    !req.body.itemNameEng ||
+    !req.body.retailPrice ||
+    !req.body.vat
+  ) {
+    res.status(400);
+    return res.json({ message: "Sva polja su obavezna." });
+  }
+
+  try {
+    const item = await DI.itemRepository.findOne(req.params.id);
+
+    if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+
+    wrap(item).assign(req.body);
+    await DI.itemRepository.flush();
+
+    res.json(item);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
+
 // Create Item
 router.post("/new", async (req: MyRequest<Item>, res: Response) => {
   if (
