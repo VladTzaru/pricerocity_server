@@ -1,9 +1,10 @@
-import { Entity, Property } from "@mikro-orm/core";
+import { Entity, Property, Unique } from "@mikro-orm/core";
 import { BaseEntity } from "./BaseEntity";
 
 @Entity()
 export class Buyer extends BaseEntity {
   @Property()
+  @Unique()
   name: string;
 
   @Property()
@@ -20,4 +21,7 @@ export class Buyer extends BaseEntity {
 
   @Property()
   phoneNumber?: number;
+
+  @Property()
+  vatNumber: number;
 }
