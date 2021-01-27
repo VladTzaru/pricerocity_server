@@ -3,14 +3,14 @@ import { ObjectId } from "@mikro-orm/mongodb";
 
 export abstract class BaseEntity {
   @PrimaryKey()
-  protected _id!: ObjectId;
+  _id!: ObjectId;
 
   @SerializedPrimaryKey()
-  protected id!: string;
+  id!: string;
 
   @Property()
-  protected createdAt = new Date();
+  createdAt = new Date();
 
   @Property({ onUpdate: () => new Date() })
-  protected updatedAt = new Date();
+  updatedAt = new Date();
 }

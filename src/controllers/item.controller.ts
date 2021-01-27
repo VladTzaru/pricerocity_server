@@ -18,7 +18,7 @@ router.get("/", async (_: Request, res: Response) => {
 // Get an item by ID
 router.get("/:id", async (req: Request, res: Response) => {
   try {
-    const item = await DI.em.find(Item, req.body.id);
+    const item = await DI.itemRepository.findOne(req.params.id);
 
     if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
 
