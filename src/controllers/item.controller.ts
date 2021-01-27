@@ -9,19 +9,27 @@ import { MyRequest } from "src/types";
 
 const router = Router();
 
-// Get all items
-router.get("/", async (_: Request, res: Response) => {
-  const items = await DI.itemRepository.findAll({});
-  res.json(items);
-});
+// Create Item
+router.post("/new", async (req: MyRequest<Item>, res: Response) => {
+  if (
+    !req.body.itemNameCro ||
+    !req.body.itemNameEng ||
+    !req.body.retailPrice ||
+    !req.body.vat
+  ) {
+    res.status(400);
+    return res.json({ message: "Sva polja su obavezna." });
+  }
 
-// Get an item by ID
-router.get("/:id", async (req: Request, res: Response) => {
   try {
-    const item = await DI.itemRepository.findOne(req.params.id);
-
-    if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
-
+    const item = new Item(
+      req.body.itemNameCro,
+      req.body.itemNameEng,
+      req.body.retailPrice,
+      req.body.vat
+    );
+    wrap(item).assign(req.body);
+    await DI.itemRepository.persist(item).flush();
     res.json(item);
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -54,27 +62,34 @@ router.put("/:id", async (req: MyRequest<Item>, res: Response) => {
   }
 });
 
-// Create Item
-router.post("/new", async (req: MyRequest<Item>, res: Response) => {
-  if (
-    !req.body.itemNameCro ||
-    !req.body.itemNameEng ||
-    !req.body.retailPrice ||
-    !req.body.vat
-  ) {
-    res.status(400);
-    return res.json({ message: "Sva polja su obavezna." });
-  }
-
+// Delete item
+router.delete("/:id", async (req: MyRequest<Item>, res: Response) => {
   try {
-    const item = new Item(
-      req.body.itemNameCro,
-      req.body.itemNameEng,
-      req.body.retailPrice,
-      req.body.vat
-    );
-    wrap(item).assign(req.body);
-    await DI.itemRepository.persist(item).flush();
+    const item = await DI.itemRepository.findOne(req.params.id);
+
+    if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+
+    await DI.itemRepository.removeAndFlush(item);
+
+    res.status(200).json({ message: "Stavka uspešno uklonjena." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+// Get all items
+router.get("/", async (_: Request, res: Response) => {
+  const items = await DI.itemRepository.findAll({});
+  res.json(items);
+});
+
+// Get an item by ID
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const item = await DI.itemRepository.findOne(req.params.id);
+
+    if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+
     res.json(item);
   } catch (error) {
     return res.status(400).json({ message: error.message });
