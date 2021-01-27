@@ -9,6 +9,7 @@ const options: Options = {
   dbName: "pricerocityDB",
   highlighter: new MongoHighlighter(),
   debug: true,
+  ensureIndexes: true,
 };
 
 export default options;
