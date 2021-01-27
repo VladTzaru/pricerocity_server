@@ -15,6 +15,19 @@ router.get("/", async (_: Request, res: Response) => {
   res.json(items);
 });
 
+// Get an item by ID
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const item = await DI.em.find(Item, req.body.id);
+
+    if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+
+    res.json(item);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
+
 // Create Item
 router.post("/new", async (req: MyRequest<Item>, res: Response) => {
   if (
