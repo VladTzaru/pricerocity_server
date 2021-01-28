@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import Router from "express-promise-router";
 import { wrap } from "@mikro-orm/core";
 
@@ -88,11 +88,11 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
 //   }
 // });
 
-// // Get all items
-// router.get("/", async (_: Request, res: Response) => {
-//   const items = await DI.itemRepository.findAll({});
-//   res.json(items);
-// });
+// Get all buyers
+router.get("/", async (_: Request, res: Response) => {
+  const buyers = await DI.buyerRepository.findAll({});
+  res.json(buyers);
+});
 
 // // Get an item by ID
 // router.get("/:id", async (req: Request, res: Response) => {
