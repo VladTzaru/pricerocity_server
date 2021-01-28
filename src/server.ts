@@ -13,7 +13,7 @@ import {
 
 // My Imports
 import { Item } from "./entities/Item";
-import { ItemController } from "./controllers";
+import { BuyerController, ItemController } from "./controllers";
 import { Buyer } from "./entities/Buyer";
 
 dotenv.config();
@@ -41,6 +41,7 @@ const port = 5000;
 
   // Routes
   app.use("/item", ItemController);
+  app.use("/buyer", BuyerController);
 
   // Catch all route
   app.use((_req, res) => res.status(404).json({ message: "No route found" }));

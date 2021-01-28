@@ -1,4 +1,5 @@
 import { Entity, Property, Unique } from "@mikro-orm/core";
+import { BuyerType } from "src/types";
 import { BaseEntity } from "./BaseEntity";
 
 @Entity()
@@ -11,7 +12,7 @@ export class Buyer extends BaseEntity {
   address: string;
 
   @Property()
-  zipCode: number;
+  zipCode: string;
 
   @Property()
   city: string;
@@ -20,11 +21,32 @@ export class Buyer extends BaseEntity {
   country: string;
 
   @Property()
-  phoneNumber?: number;
+  phoneNumber?: string;
 
   @Property()
-  type: string; // Business or Private person
+  type: BuyerType;
 
   @Property()
   vatNumber?: number;
+
+  constructor(
+    name: string,
+    address: string,
+    zipCode: string,
+    city: string,
+    country: string,
+    type: BuyerType,
+    phoneNumber?: string,
+    vatNumber?: number
+  ) {
+    super();
+    this.name = name;
+    this.address = address;
+    this.zipCode = zipCode;
+    this.city = city;
+    this.country = country;
+    this.phoneNumber = phoneNumber;
+    this.type = type;
+    this.vatNumber = vatNumber;
+  }
 }
