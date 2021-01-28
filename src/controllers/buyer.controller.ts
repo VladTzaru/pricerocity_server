@@ -11,7 +11,6 @@ const router = Router();
 
 // Create buyer
 router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
-  console.log(req.body.name);
   if (
     !req.body.name ||
     !req.body.address ||
@@ -19,10 +18,15 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
     !req.body.city ||
     !req.body.country ||
     !req.body.type ||
-    typeof req.body.vatNumber === undefined
+    !req.body.vatNumber
   ) {
     res.status(400);
     return res.json({ message: "Proveri da li su obavezna polja popunjena." });
+  }
+
+  if (req.body.type !== "Pravno lice" && req.body.type !== "Privatno lice") {
+    res.status(400);
+    return res.json({ message: "Tip kupca nije ispravan." });
   }
 
   try {

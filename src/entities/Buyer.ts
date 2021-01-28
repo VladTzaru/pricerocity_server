@@ -45,8 +45,8 @@ export class Buyer extends BaseEntity {
     this.zipCode = zipCode;
     this.city = city;
     this.country = country;
-    this.phoneNumber = phoneNumber;
     this.type = type;
+    this.phoneNumber = phoneNumber;
     this.vatNumber = vatNumber;
   }
 }
