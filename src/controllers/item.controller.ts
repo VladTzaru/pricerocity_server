@@ -14,8 +14,8 @@ router.post("/new", async (req: MyRequest<Item>, res: Response) => {
   if (
     !req.body.itemNameCro ||
     !req.body.itemNameEng ||
-    !req.body.retailPrice ||
-    !req.body.vat
+    typeof req.body.retailPrice === "undefined" ||
+    typeof req.body.vat === "undefined"
   ) {
     res.status(400);
     return res.json({ message: "Sva polja su obavezna." });
@@ -41,8 +41,8 @@ router.put("/:id", async (req: MyRequest<Item>, res: Response) => {
   if (
     !req.body.itemNameCro ||
     !req.body.itemNameEng ||
-    !req.body.retailPrice ||
-    !req.body.vat
+    typeof req.body.retailPrice === "undefined" ||
+    typeof req.body.vat === "undefined"
   ) {
     res.status(400);
     return res.json({ message: "Sva polja su obavezna." });
