@@ -14,8 +14,7 @@ import {
 // My Imports
 import { Item } from "./entities/Item";
 import { ItemController } from "./controllers";
-import { Buyer } from "./entities/buyer/Buyer";
-import { Business } from "./entities/buyer/Business";
+import { Buyer } from "./entities/Buyer";
 
 dotenv.config();
 
@@ -24,7 +23,6 @@ export const DI = {} as {
   em: EntityManager;
   itemRepository: EntityRepository<Item>;
   buyerRepository: EntityRepository<Buyer>;
-  businessRepository: EntityRepository<Business>;
 };
 
 const app = express();
