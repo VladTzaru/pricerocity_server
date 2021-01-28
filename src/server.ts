@@ -32,6 +32,7 @@ const port = 5000;
   DI.orm = await MikroORM.init();
   DI.em = DI.orm.em;
   DI.itemRepository = DI.orm.em.getRepository(Item);
+  DI.buyerRepository = DI.orm.em.getRepository(Buyer);
 
   app.use(cors());
   app.use(express.json());

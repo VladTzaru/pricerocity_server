@@ -27,7 +27,7 @@ export class Buyer extends BaseEntity {
   type: BuyerType;
 
   @Property()
-  vatNumber?: number;
+  vatNumber?: string;
 
   constructor(
     name: string,
@@ -37,7 +37,7 @@ export class Buyer extends BaseEntity {
     country: string,
     type: BuyerType,
     phoneNumber?: string,
-    vatNumber?: number
+    vatNumber?: string
   ) {
     super();
     this.name = name;

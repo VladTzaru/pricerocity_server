@@ -11,6 +11,7 @@ const router = Router();
 
 // Create buyer
 router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
+  console.log(req.body.name);
   if (
     !req.body.name ||
     !req.body.address ||
