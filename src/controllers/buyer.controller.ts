@@ -17,8 +17,7 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
     !req.body.zipCode ||
     !req.body.city ||
     !req.body.country ||
-    !req.body.type ||
-    !req.body.vatNumber
+    !req.body.type
   ) {
     res.status(400);
     return res.json({ message: "Proveri da li su obavezna polja popunjena." });
