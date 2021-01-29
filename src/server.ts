@@ -15,6 +15,7 @@ import {
 import { Item } from "./entities/Item";
 import { BuyerController, ItemController } from "./controllers";
 import { Buyer } from "./entities/Buyer";
+import { InvoiceR1 } from "./entities/InvoiceR1";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ export const DI = {} as {
   em: EntityManager;
   itemRepository: EntityRepository<Item>;
   buyerRepository: EntityRepository<Buyer>;
+  invoiceRepository: EntityRepository<InvoiceR1>;
 };
 
 const app = express();
@@ -33,6 +35,7 @@ const port = 5000;
   DI.em = DI.orm.em;
   DI.itemRepository = DI.orm.em.getRepository(Item);
   DI.buyerRepository = DI.orm.em.getRepository(Buyer);
+  DI.invoiceRepository = DI.orm.em.getRepository(InvoiceR1);
 
   app.use(cors());
   app.use(express.json());

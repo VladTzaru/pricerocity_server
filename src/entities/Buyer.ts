@@ -1,6 +1,14 @@
-import { Entity, Property, Unique } from "@mikro-orm/core";
+import {
+  Cascade,
+  Collection,
+  Entity,
+  OneToMany,
+  Property,
+  Unique,
+} from "@mikro-orm/core";
 import { BuyerType } from "src/types";
 import { BaseEntity } from "./BaseEntity";
+import { InvoiceR1 } from "./InvoiceR1";
 
 @Entity()
 export class Buyer extends BaseEntity {
@@ -28,6 +36,9 @@ export class Buyer extends BaseEntity {
 
   @Property()
   vatNumber?: string;
+
+  @OneToMany(() => InvoiceR1, (i) => i.buyer, { cascade: [Cascade.ALL] })
+  invoices = new Collection<InvoiceR1>(this);
 
   constructor(
     name: string,

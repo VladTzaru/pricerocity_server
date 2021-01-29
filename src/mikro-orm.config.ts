@@ -1,11 +1,12 @@
 import { Options } from "@mikro-orm/core";
 import { MongoHighlighter } from "@mikro-orm/mongo-highlighter";
 import { Buyer } from "./entities/Buyer";
+import { InvoiceR1 } from "./entities/InvoiceR1";
 import { Item } from "./entities/Item";
 
 const options: Options = {
   type: "mongo",
-  entities: [Item, Buyer],
+  entities: [Item, Buyer, InvoiceR1],
   clientUrl: process.env.MONGODB_URI,
   dbName: "pricerocityDB",
   highlighter: new MongoHighlighter(),
