@@ -1,11 +1,11 @@
-import { Cascade, Entity, ManyToOne, Property } from "@mikro-orm/core";
+import { Entity, ManyToOne, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./BaseEntity";
 import { Buyer } from "./Buyer";
 
 @Entity()
 export class InvoiceR1 extends BaseEntity {
-  @ManyToOne(() => Buyer, { cascade: [Cascade.PERSIST, Cascade.REMOVE] })
-  buyer!: Buyer;
+  @ManyToOne(() => Buyer)
+  buyer: Buyer;
 
   @Property()
   recipient: string;

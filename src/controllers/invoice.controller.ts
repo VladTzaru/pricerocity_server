@@ -34,7 +34,7 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
       req.body.invoiceIssuedAt,
       req.body.notes
     );
-    wrap(invoice).assign(req.body);
+    wrap(invoice).assign(req.body, { em: DI.orm.em });
     await DI.invoiceRepository.persist(invoice).flush();
     res.json(invoice);
   } catch (error) {
