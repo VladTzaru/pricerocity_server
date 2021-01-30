@@ -39,7 +39,7 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
       req.body.phoneNumber,
       req.body.vatNumber
     );
-    wrap(buyer).assign(req.body);
+    wrap(buyer).assign(req.body, { em: DI.orm.em });
     await DI.buyerRepository.persist(buyer).flush();
     res.json(buyer);
   } catch (error) {
@@ -94,17 +94,18 @@ router.get("/", async (_: Request, res: Response) => {
   res.json(buyers);
 });
 
-// // Get an item by ID
-// router.get("/:id", async (req: Request, res: Response) => {
-//   try {
-//     const item = await DI.itemRepository.findOne(req.params.id);
+// Get a buyer by ID
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const buyer = await DI.buyerRepository.findOne(req.params.id, ["invoices"]);
 
-//     if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+    if (!buyer)
+      return res.status(400).json({ message: "Kupac nije pronađen." });
 
-//     res.json(item);
-//   } catch (error) {
-//     return res.status(400).json({ message: error.message });
-//   }
-// });
+    res.json(buyer);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
 
 export const BuyerController = router;
