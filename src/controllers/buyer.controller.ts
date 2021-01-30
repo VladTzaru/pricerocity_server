@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Router from "express-promise-router";
-import { wrap } from "@mikro-orm/core";
+import { QueryOrder, wrap } from "@mikro-orm/core";
 
 import { DI } from "../server";
 import { Buyer } from "../entities/Buyer";
@@ -90,7 +90,11 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
 
 // Get all buyers
 router.get("/", async (_: Request, res: Response) => {
-  const buyers = await DI.buyerRepository.findAll({});
+  const buyers = await DI.buyerRepository.findAll(
+    ["invoices"],
+    { invoiceType: QueryOrder.DESC },
+    20
+  );
   res.json(buyers);
 });
 
