@@ -16,6 +16,7 @@ import { Item } from "./entities/Item";
 import { BuyerController, ItemController } from "./controllers";
 import { Buyer } from "./entities/Buyer";
 import { InvoiceR1 } from "./entities/InvoiceR1";
+import { InvoiceController } from "./controllers/invoice.controller";
 
 dotenv.config();
 
@@ -46,6 +47,7 @@ const port = 5000;
   // Routes
   app.use("/item", ItemController);
   app.use("/buyer", BuyerController);
+  app.use("/invoice", InvoiceController);
 
   // Catch all route
   app.use((_req, res) => res.status(404).json({ message: "No route found" }));

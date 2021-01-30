@@ -4,6 +4,9 @@ import { Buyer } from "./Buyer";
 
 @Entity()
 export class InvoiceR1 extends BaseEntity {
+  @ManyToOne(() => Buyer, { cascade: [Cascade.PERSIST, Cascade.REMOVE] })
+  buyer!: Buyer;
+
   @Property()
   recipient: string;
 
@@ -30,9 +33,6 @@ export class InvoiceR1 extends BaseEntity {
 
   @Property()
   notes?: string;
-
-  @ManyToOne(() => Buyer, { cascade: [Cascade.PERSIST, Cascade.REMOVE] })
-  buyer!: Buyer;
 
   constructor(
     buyer: Buyer,
