@@ -1,5 +1,6 @@
-import { BaseEntity, Options } from "@mikro-orm/core";
+import { Options } from "@mikro-orm/core";
 import { MongoHighlighter } from "@mikro-orm/mongo-highlighter";
+import { BaseEntity } from "./entities/BaseEntity";
 import { Buyer } from "./entities/Buyer";
 import { InvoiceR1 } from "./entities/InvoiceR1";
 import { Item } from "./entities/Item";
