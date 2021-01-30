@@ -12,11 +12,12 @@ import {
 } from "@mikro-orm/core";
 
 // My Imports
-import { Item } from "./entities/Item";
-import { BuyerController, ItemController } from "./controllers";
-import { Buyer } from "./entities/Buyer";
-import { InvoiceR1 } from "./entities/InvoiceR1";
-import { InvoiceController } from "./controllers/invoice.controller";
+import {
+  BuyerController,
+  ItemController,
+  InvoiceController,
+} from "./controllers";
+import { Buyer, InvoiceR1, Item } from "./entities";
 
 dotenv.config();
 
