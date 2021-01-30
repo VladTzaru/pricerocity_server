@@ -32,7 +32,7 @@ export class InvoiceR1 extends BaseEntity {
   notes?: string;
 
   @ManyToOne(() => Buyer, { cascade: [Cascade.PERSIST, Cascade.REMOVE] })
-  buyer: Buyer;
+  buyer!: Buyer;
 
   constructor(
     buyer: Buyer,
