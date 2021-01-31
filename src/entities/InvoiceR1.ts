@@ -17,6 +17,9 @@ export class InvoiceR1 extends BaseEntity {
   paymentDeadline: number;
 
   @Property()
+  paymentDeadlineDate: Date;
+
+  @Property()
   invoiceNumberPrefix: number;
 
   @Property()
@@ -39,6 +42,7 @@ export class InvoiceR1 extends BaseEntity {
     recipient: string,
     date: Date,
     paymentDeadline: number,
+    paymentDeadlineDate: Date,
     invoiceNumberPrefix: number,
     invoiceNumberSuffix: string,
     invoiceType: string,
@@ -51,6 +55,7 @@ export class InvoiceR1 extends BaseEntity {
     this.recipient = recipient;
     this.date = date;
     this.paymentDeadline = paymentDeadline;
+    this.paymentDeadlineDate = paymentDeadlineDate;
     this.invoiceNumberPrefix = invoiceNumberPrefix;
     this.invoiceNumberSuffix = invoiceNumberSuffix;
     this.invoiceType = invoiceType;

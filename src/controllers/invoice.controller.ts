@@ -11,15 +11,22 @@ const router = Router();
 
 // Create invoice
 router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
-  // if (
-  //   !req.body.itemNameCro ||
-  //   !req.body.itemNameEng ||
-  //   typeof req.body.retailPrice === "undefined" ||
-  //   typeof req.body.vat === "undefined"
-  // ) {
-  //   res.status(400);
-  //   return res.json({ message: "Sva polja su obavezna." });
-  // }
+  if (
+    !req.body.buyer ||
+    !req.body.recipient ||
+    !req.body.date ||
+    !req.body.paymentDeadlineDate ||
+    typeof req.body.invoiceNumberPrefix === "undefined" ||
+    typeof req.body.paymentDeadlineDate === "undefined" ||
+    !req.body.invoiceNumberSuffix ||
+    !req.body.invoiceNumberPrefix ||
+    !req.body.invoiceType ||
+    !req.body.paymentMethod ||
+    !req.body.invoiceIssuedAt
+  ) {
+    res.status(400);
+    return res.json({ message: "Provjeri da li je forma validno ispunjena." });
+  }
 
   try {
     const invoice = new InvoiceR1(
@@ -27,6 +34,7 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
       req.body.recipient,
       req.body.date,
       req.body.paymentDeadline,
+      req.body.paymentDeadlineDate,
       req.body.invoiceNumberPrefix,
       req.body.invoiceNumberSuffix,
       req.body.invoiceType,
