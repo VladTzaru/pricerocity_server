@@ -1,4 +1,5 @@
 import { Entity, ManyToOne, Property } from "@mikro-orm/core";
+import { DocumentType } from "../types";
 import { BaseEntity } from "./BaseEntity";
 import { Buyer } from "./Buyer";
 
@@ -26,13 +27,13 @@ export class InvoiceR1 extends BaseEntity {
   invoiceNumberSuffix: string;
 
   @Property()
-  invoiceType: string;
-
-  @Property()
   paymentMethod: string;
 
   @Property()
   invoiceIssuedAt: string;
+
+  @Property()
+  readonly documentType: DocumentType.INVOICE_R1;
 
   @Property()
   notes?: string;
@@ -45,7 +46,6 @@ export class InvoiceR1 extends BaseEntity {
     paymentDeadlineDate: Date,
     invoiceNumberPrefix: number,
     invoiceNumberSuffix: string,
-    invoiceType: string,
     paymentMethod: string,
     invoiceIssuedAt: string,
     notes?: string
@@ -58,7 +58,6 @@ export class InvoiceR1 extends BaseEntity {
     this.paymentDeadlineDate = paymentDeadlineDate;
     this.invoiceNumberPrefix = invoiceNumberPrefix;
     this.invoiceNumberSuffix = invoiceNumberSuffix;
-    this.invoiceType = invoiceType;
     this.paymentMethod = paymentMethod;
     this.invoiceIssuedAt = invoiceIssuedAt;
     this.notes = notes;

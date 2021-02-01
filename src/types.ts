@@ -5,3 +5,9 @@ export interface MyRequest<T> extends Request {
 }
 
 export type BuyerType = "Privatno lice" | "Pravno lice";
+
+export enum DocumentType {
+  INVOICE_R1 = "OBRAZAC-R1",
+  DELIVERY_NOTE = "OTPREMNICA",
+  PROFORMA_INVOICE = "PONUDA",
+}

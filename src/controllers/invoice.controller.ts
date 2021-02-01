@@ -20,7 +20,7 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
     typeof req.body.paymentDeadlineDate === "undefined" ||
     !req.body.invoiceNumberSuffix ||
     !req.body.invoiceNumberPrefix ||
-    !req.body.invoiceType ||
+    !req.body.documentType ||
     !req.body.paymentMethod ||
     !req.body.invoiceIssuedAt
   ) {
@@ -37,7 +37,6 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
       req.body.paymentDeadlineDate,
       req.body.invoiceNumberPrefix,
       req.body.invoiceNumberSuffix,
-      req.body.invoiceType,
       req.body.paymentMethod,
       req.body.invoiceIssuedAt,
       req.body.notes
