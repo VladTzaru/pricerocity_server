@@ -2,6 +2,7 @@ import { Entity, ManyToOne, Property } from "@mikro-orm/core";
 import { DocumentType } from "../types";
 import { BaseEntity } from "./BaseEntity";
 import { Buyer } from "./Buyer";
+import { Item } from "./Item";
 
 @Entity()
 export class InvoiceR1 extends BaseEntity {
@@ -36,6 +37,9 @@ export class InvoiceR1 extends BaseEntity {
   readonly documentType: DocumentType.INVOICE_R1;
 
   @Property()
+  items: Item[];
+
+  @Property()
   notes?: string;
 
   constructor(
@@ -48,6 +52,7 @@ export class InvoiceR1 extends BaseEntity {
     invoiceNumberSuffix: string,
     paymentMethod: string,
     invoiceIssuedAt: string,
+    items: Item[],
     notes?: string
   ) {
     super();
@@ -60,6 +65,7 @@ export class InvoiceR1 extends BaseEntity {
     this.invoiceNumberSuffix = invoiceNumberSuffix;
     this.paymentMethod = paymentMethod;
     this.invoiceIssuedAt = invoiceIssuedAt;
+    this.items = items;
     this.notes = notes;
   }
 }

@@ -22,7 +22,8 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
     !req.body.invoiceNumberPrefix ||
     !req.body.documentType ||
     !req.body.paymentMethod ||
-    !req.body.invoiceIssuedAt
+    !req.body.invoiceIssuedAt ||
+    req.body.items.length <= 0
   ) {
     res.status(400);
     return res.json({ message: "Provjeri da li je forma validno ispunjena." });
@@ -39,6 +40,7 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
       req.body.invoiceNumberSuffix,
       req.body.paymentMethod,
       req.body.invoiceIssuedAt,
+      req.body.items,
       req.body.notes
     );
     wrap(invoice).assign(req.body, { em: DI.orm.em });
