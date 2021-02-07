@@ -18,3 +18,5 @@ export interface InvoiceSummary {
   totalWithVAT: number;
   totalWithoutVat: number;
 }
+
+export type InvoiceStatus = "ISSUED" | "STORNO";

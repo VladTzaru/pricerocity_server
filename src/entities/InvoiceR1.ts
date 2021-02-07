@@ -1,5 +1,5 @@
 import { Entity, ManyToOne, Property } from "@mikro-orm/core";
-import { DocumentType, InvoiceSummary } from "../types";
+import { DocumentType, InvoiceStatus, InvoiceSummary } from "../types";
 import { BaseEntity } from "./BaseEntity";
 import { Buyer } from "./Buyer";
 import { Item } from "./Item";
@@ -40,7 +40,7 @@ export class InvoiceR1 extends BaseEntity {
   items: Item[];
 
   @Property()
-  status: "ISSUED" | "STORNO" | "";
+  status: InvoiceStatus = "ISSUED";
 
   @Property()
   summary: InvoiceSummary;
@@ -59,13 +59,8 @@ export class InvoiceR1 extends BaseEntity {
     paymentMethod: string,
     invoiceIssuedAt: string,
     items: Item[],
-    status: "",
-    summary: {
-      shipping: 0;
-      totalVat: 0;
-      totalWithVAT: 0;
-      totalWithoutVat: 0;
-    },
+    status: InvoiceStatus,
+    summary: InvoiceSummary,
     notes?: string
   ) {
     super();
