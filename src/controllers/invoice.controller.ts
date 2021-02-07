@@ -93,11 +93,11 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
 //   }
 // });
 
-// // Get all items
-// router.get("/", async (_: Request, res: Response) => {
-//   const items = await DI.itemRepository.findAll({});
-//   res.json(items);
-// });
+// Get all invoices
+router.get("/", async (_, res: Response) => {
+  const invoices = await DI.invoiceRepository.findAll({});
+  res.json(invoices);
+});
 
 // // Get an item by ID
 // router.get("/:id", async (req: Request, res: Response) => {
