@@ -40,7 +40,7 @@ export class InvoiceR1 extends BaseEntity {
   items: Item[];
 
   @Property()
-  status: InvoiceStatus = "ISSUED";
+  status?: InvoiceStatus = "ISSUED";
 
   @Property()
   summary: InvoiceSummary;
@@ -59,7 +59,6 @@ export class InvoiceR1 extends BaseEntity {
     paymentMethod: string,
     invoiceIssuedAt: string,
     items: Item[],
-    status: InvoiceStatus,
     summary: InvoiceSummary,
     notes?: string
   ) {
@@ -74,7 +73,6 @@ export class InvoiceR1 extends BaseEntity {
     this.paymentMethod = paymentMethod;
     this.invoiceIssuedAt = invoiceIssuedAt;
     this.items = items;
-    this.status = status;
     this.summary = summary;
     this.notes = notes;
   }

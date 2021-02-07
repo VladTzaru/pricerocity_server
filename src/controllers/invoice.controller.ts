@@ -41,7 +41,6 @@ router.post("/new", async (req: MyRequest<InvoiceR1>, res: Response) => {
       req.body.paymentMethod,
       req.body.invoiceIssuedAt,
       req.body.items,
-      req.body.status,
       req.body.summary,
       req.body.notes
     );
