@@ -73,20 +73,20 @@ router.post("/new", async (req: MyRequest<Buyer>, res: Response) => {
 //   }
 // });
 
-// // Delete item
-// router.delete("/:id", async (req: MyRequest<Item>, res: Response) => {
-//   try {
-//     const item = await DI.itemRepository.findOne(req.params.id);
+// Delete buyer
+router.delete("/:id", async (req: MyRequest<Buyer>, res: Response) => {
+  try {
+    const buyer = await DI.buyerRepository.findOne(req.params.id);
 
-//     if (!item) return res.status(400).json({ message: "Stavka nije nađena." });
+    if (!buyer) return res.status(400).json({ message: "Stavka nije nađena." });
 
-//     await DI.itemRepository.removeAndFlush(item);
+    await DI.buyerRepository.removeAndFlush(buyer);
 
-//     res.status(200).json({ message: "Stavka uspešno uklonjena." });
-//   } catch (error) {
-//     return res.status(400).json({ message: error.message });
-//   }
-// });
+    res.status(200).json({ message: "Kupac uspešno uklonjen." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+});
 
 // Get all buyers
 router.get("/", async (_: Request, res: Response) => {
