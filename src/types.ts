@@ -11,3 +11,10 @@ export enum DocumentType {
   DELIVERY_NOTE = "OTPREMNICA",
   PROFORMA_INVOICE = "PONUDA",
 }
+
+export interface InvoiceSummary {
+  shipping: number;
+  totalVat: number;
+  totalWithVAT: number;
+  totalWithoutVat: number;
+}
