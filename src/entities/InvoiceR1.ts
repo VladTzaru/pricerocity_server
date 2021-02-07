@@ -40,6 +40,9 @@ export class InvoiceR1 extends BaseEntity {
   items: Item[];
 
   @Property()
+  status: "ISSUED" | "STORNO" | "";
+
+  @Property()
   notes?: string;
 
   constructor(
@@ -53,6 +56,7 @@ export class InvoiceR1 extends BaseEntity {
     paymentMethod: string,
     invoiceIssuedAt: string,
     items: Item[],
+    status: "",
     notes?: string
   ) {
     super();
@@ -66,6 +70,7 @@ export class InvoiceR1 extends BaseEntity {
     this.paymentMethod = paymentMethod;
     this.invoiceIssuedAt = invoiceIssuedAt;
     this.items = items;
+    this.status = status;
     this.notes = notes;
   }
 }
